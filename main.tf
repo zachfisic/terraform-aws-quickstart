@@ -1,6 +1,14 @@
 # Terraform settings
 terraform {
 
+  # Terraform Cloud
+  cloud {
+    organization = "zfc"
+    workspaces {
+      name = "terraform-aws-quickstart"
+    }
+  }
+
   # The required providers Terraform will use to provision your infrastructure.
   # For each provider, the `source` attribute defines an optional hostname, a namespace, and the provider type.
   required_providers {
@@ -33,6 +41,7 @@ resource "aws_instance" "app_server" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "ExampleAppServerInstance"
+    # Name = "ExampleAppServerInstance"
+    Name = var.instance_name
   }
 }
